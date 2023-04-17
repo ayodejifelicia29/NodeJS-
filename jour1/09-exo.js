@@ -35,3 +35,15 @@ const tab =new Set()
  tab2.add(10)
  tab2.add(10)
  console.log(tab2);
+
+ // http => créer des serveurs !! 
+// express => couche via en glober le module http natif de nodejs 
+// idéal pour créer de API 
+// permet de créer très très facilement des serveurs http 
+
+// await async => rappeler 
+// fetch ()
+// CJS module 
+// require module.exports
+// ES Module 
+// npm init --yes
