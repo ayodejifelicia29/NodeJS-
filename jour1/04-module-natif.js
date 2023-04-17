@@ -18,7 +18,7 @@ mulitiplication(10, 20);
 // dans ce fichier je veux écrire le texte "bonjour !!!"
 //
 
-// je veux créer un fichier 
+// it's use to create your fille
 fs.writeFile("04-exemple.txt" ,"bonjour!!!" ,'utf8' ,function(){
 	console.log("le fichier est bien créé");
 })
