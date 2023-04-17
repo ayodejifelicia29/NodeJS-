@@ -22,4 +22,4 @@
 
 // lodash=> https://www.npmjs.com/package/lodash
 //
-// npm istall
+// npm i
