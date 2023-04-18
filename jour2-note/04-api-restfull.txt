@@ -37,7 +37,18 @@ Méthode http DELETE
 express peut distinguer facilement les différentes type de requête qui sont envoyées depuis un client
 
 => installé un logiciel Postman (logiciel)
-=> simuler client facilement 
+=> simuler un client facilement réaliser des requêtes http 
+=> logiciel la spécialité fetch()
+=> permet de créer un back (serveur / API) sans avoir à attendre que 
+=> le client (react native / site internet) soit prêt 
 
-=> pres
-https://www.youtube.com/watch?v=AbCTlemwZ1k
+=> extension => thunder client 
+
+=> présenter l'extension thunder client 
+=> https://www.youtube.com/watch?v=AbCTlemwZ1k
+
+=> https://www.postman.com/downloads/
+
+// rdv 13h40 !! bon appetit !!!
+
+react native factice => réaliser des demandes requêtes http
