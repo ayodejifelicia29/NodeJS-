@@ -37,3 +37,13 @@ npm install moment underscore => téléchargé la librairie / stocker dans le do
 
 
 => https://www.npmjs.com/ => https://www.npmjs.com/package/express
+
+créer le dossier 
+
+
+
+
+=> modifiere le fichier package.json si nécessaire
+=> décision stratégique =>ajouter la pro
+
+
