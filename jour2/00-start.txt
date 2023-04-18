@@ -1,0 +1,31 @@
+support de cours : 
+
+https://formation.webdevpro.net/nodejs
+login : nodejs
+password : nodejs 
+
+------------------------
+
+node permet d'exécuter du code js côte machine 
+
+
+
+
+
+
+
+3 types de modules=>
+
+npm=> Node package Manager
+
+npm init => créer un fichier package.json 
+
+
+
+=>moment underscore librairie utilitaires=> donne plein de fonctions qui n'existent pas en js
+
+=> créer une API
+=> donc il faut créer avec nodejs un serveur
+=> vous avez une librairie => 
+
+https://www.npmjs.com/package/express
