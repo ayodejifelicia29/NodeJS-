@@ -2,6 +2,7 @@
 //en html => il faut 0BLIGATOIREMENT que le fichier d'entrée dans votre projet s'appelle index.htlm(Apache)
 
 const express = require("express");
+const {exos} =require("./bdd")
  // import la librairie express depuis le doisser node_modules
 
 // dans le monde de nodejs => main.js => main.js/ serveur.js / aap.js
@@ -59,6 +60,22 @@ serveur.get ("/etudiant/:num" , (request,reponse)=> {
 	 //sinon => affiche l'etudiant concerné
 	   reponse.json(etudiantRecherche);
    })
+
+ 
+   serveur.get("/exo/:techno", (request, reponse) => {
+    const techno = request.params.techno ;
+    if(techno === "all") return reponse.json(exos) ;
+    const exoRecherche = exos.find(function(exo){
+        return exo.nom == techno
+    })
+    if(!exoRecherche) return reponse.status(404).json({error : 404 , message : `${techno} n'existe dans les exos`});
+    reponse.json(exoRecherche); 
+})
+	
+	 
+	 
+		
+	 
 
 
 
