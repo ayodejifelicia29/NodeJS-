@@ -1,0 +1,3 @@
+on vient de voir qu'ajouter de nouvelles routes express=> simple
+
+serveur.get ("/" (req,re))
