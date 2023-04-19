@@ -30,3 +30,8 @@ async function todo(){
 }
 
 todo();
+
+// npm init --yes
+// npm i express mongoose joi dotenv
+// modifier package.json 
+// thunder client / express / mongoose (await async) MongoDB / joi // dotenv
