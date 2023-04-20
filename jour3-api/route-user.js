@@ -9,7 +9,7 @@ const { schemaJoiUser } = require("./verif") // import vérif
 const {genSalt , hash } = require("bcrypt"); 
 // importer fonction genSalt complexite à déhasher le mot depasse
 // hash => "azerty" => "13498498419cniydgduezvddzeugydbuzt"
-
+const{isValidObjectId}=require("mongoose")
 const route = Router()
 
 // il faut associer ces routes dans app.js => à notre application
@@ -65,8 +65,42 @@ route.post("/", async (request, reponse) => {
     reponse.json({msg : "profil user créé"}) // affiché dans Thunder client 
                              // status 200 => tout a été traité correctement par NodeJS
 
-    // rdv 13h40 bon appetit !!! 
+     
 })
+
+ // question récupérer tous les profils users de collection 
+ route.get("/all" , async(request,reponse) =>{
+	  const allUsers = await User.find({}).select({_id :1 , email :1})
+	  //SELECT _id ,email FROM users
+	  reponse.json(allUsers)
+ })
+    // GET : http://localhost:4003/user/all
+
+
+// supprimer un profil user via son id 
+ route.delete("/:id" , async(request , reponse) => {
+	// récupérer de l'id dans l'url
+    const id = request.params.id ;
+	// vérifier que id est un id valid pour MongoDB 
+    // si ko => erreur 400 Bad Request  STOP
+    // pour vérifier que id est valid => fonction de mongoose => isValidObjectId 
+    // pour l'utiliser il faut au préalable l'importer au début du fichier 
+     if(!isValidObjectId(id)) return reponse .status(400).json ({msg : `l'id ${id} n'est pas valide `})
+	  // si ok on continue 
+    // lancer la suppression 
+     const profilASuppromer = await User.findByIdAndRemove (id) 
+	 const profilASupprimer = await User.findByIdAndRemove(id)
+	 // si ko => erreur 404 Profil introuvable avec l'id mentionné STOP
+     if (!profilASuppromer) return reponse.status(404).json ({msg :` Profil interouvable : ${id} `})
+	 // si ok => message "profil supprimé" STOP 
+   reponse.json({msg :`profil  ${id}est bien supprimé`});
+         // DELETE: http://localhost:4003/user/644133182a5ad5001ebd8b4a 
+});
+
+
+
+// créer une nouvelle route permettant de supprimer un profil utilisateur via son id 
+// créer une nouvelle route permettant de récupérer tous les profils utilisateurs sans le password (uniquement email et _id )
 // test POST http://localhost:4003/user (le user dans l'url vient de app.js)
 // body de la requete 
 /*
