@@ -21,12 +21,26 @@ route.post("/" , async function(request, reponse){
     /* console.log(error);
     return reponse.json("stop"); */
     const {error} = schemaArticleJoi.validate(body , { abortEarly : false})
-    if(error) return  reponse.status(400).json(error.details)
+    if(error) return  reponse.status(400).json(error.details) // 400 bad Request
 
     const newArticle = new Article(body) // exos.push(body)
     await newArticle.save()
     reponse.json(newArticle); 
 })
+    
+
+  // récuperer tous les articles
+route.get("/all" , async(request , reponse) =>{
+    const tousLesArticles = await Article.find()
+    reponse.json(tousLesArticles)
+})
+   //  DELETE http://localhost:4003/644028afbe8b2be8ad182b30
+route.delete("/:id" , async(request , reponse) => {
+    const id = request.params.id ;
+     const reponseMongo = await Article.findByIdAndRemove (id)
+     if (!reponseMongo) return reponse.status(404).json ({msg :`l'article ${id}n'exise pas`})
+   reponse.json(reponseMongo);
+});
 // tester via thunder client 
 // POST http://localhost:4003
 /**

@@ -1,0 +1,7 @@
+Doumentation 
+https://joi.dev/api/
+
+format JSON (que )
+cas pratique 
+une route permettant de supprimer un article existant 
+une route permettant d'afficher la liste de toutes les articles existants
