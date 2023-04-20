@@ -9,5 +9,12 @@ const articleSchema = new Schema({
 
 const Article = model("articles", articleSchema) ;
 
+// créer un schema pour la collection (Table) user
+const userSchema = new Schema({
+    email :  String ,
+    password : String 
+});
+
+
 
 module.exports.Article = Article ; 

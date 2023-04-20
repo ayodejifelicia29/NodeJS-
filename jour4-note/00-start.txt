@@ -15,3 +15,9 @@ curl comme thunder client MAIS en ligne de commande
 cas pratique 
 une route permettant de supprimer un article existant 
 une route permettant d'afficher la liste de toutes les articles existants
+
+
+Cas pratique 
+ajouter dans le fichier route.js  2 nouvelles routes 
+une route permettant de mettre à jour un article existant 
+une route permettant de récupérer 1 seul article
