@@ -11,6 +11,7 @@ const URI = process.env.NODE_ENV === "production"? process.env.BDD_PROD : proces
 /* console.log("ici" ,process.env.NODE_ENV)
 console.log("ici" ,URI) */
 connect(URI)
+
 .then(() => console.log("connexion à MongoDB réussie"))
 .catch((ex) => console.log(ex))
 
