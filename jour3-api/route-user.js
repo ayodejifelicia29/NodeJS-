@@ -6,6 +6,7 @@
 const {Router} = require("express")
 const{User} =require("./model") // import du model pour communiquer avec MongoDB
 
+
 const route = Router()
 // il faut associer ces  routes dans
 
