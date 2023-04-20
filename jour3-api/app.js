@@ -1,6 +1,7 @@
 const express = require("express")
 const route =require("./route")
 const routeUser =require("./route-user")
+const routeConnexion = require("./route-connexion")
 const {connect} = require("mongoose");
 require("dotenv").config();
 
@@ -21,6 +22,7 @@ const app = express ()
 
 app.use(express.json()) ; // middleware
 
+app.use(routeConnexion);
 app.use(route); // ça permet de stocker les routes dans fichier à part
 app.use( "/user" ,routeUser) // préfixe de route // http://localhost:4003/user/le-reste/
                              // le-reste  et méthode GET/ POST/ PUT/ DELETE

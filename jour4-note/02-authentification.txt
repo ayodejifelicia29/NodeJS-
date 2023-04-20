@@ -12,7 +12,7 @@ page login
 => serveur route.post("/email" ,function(request,reponse){
 	// vérifier que l'on a bien {email: ........ password :......}
 	//stop => c'est pas bon 400
-	// est ce que il y a un profil utilisateur qui a un email saisit??
+	// est ce que il y a un profil utilisateur  en base de donnée qui a un email saisit??
 
 	//stop => toto@yahoo.com => stop 400
 
