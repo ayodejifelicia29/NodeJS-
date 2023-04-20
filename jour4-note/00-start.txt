@@ -1,7 +1,17 @@
 Doumentation 
 https://joi.dev/api/
 
-format JSON (que )
+
+https://joi.dev/api/
+
+format JSON (que l'encodage ) + formulaire dans lequel il y a une saisit => UTF8
+
+curl => https://stackoverflow.com/questions/12489530/how-do-i-post-form-data-with-utf-8-encoding-by-using-curl
+curl comme thunder client MAIS en ligne de commande
+
+=> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+
+
 cas pratique 
 une route permettant de supprimer un article existant 
 une route permettant d'afficher la liste de toutes les articles existants
