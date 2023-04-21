@@ -28,8 +28,14 @@ route.post("/" ,[autorisation,isValidArticle] ,async function(request, reponse){
   // http://localhost:4003/all
   // 1 middleware
 route.get("/all" , async(request , reponse) =>{
-    const tousLesArticles = await Article.find()
+    const tousLesArticles = await Article.find().populate('auteur' ,"email -_id role")
     reponse.json(tousLesArticles)
+})
+
+route.get("/article-of-user/:id" , async(request , reponse) =>{
+  const id =request.params.id
+  const tousLesArticles = await Article.find({"auteur":id}).populate('auteur' ,"email -_id role")
+  reponse.json(tousLesArticles)
 })
 
 
