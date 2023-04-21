@@ -38,7 +38,7 @@ route.post("/login" , async(request,reponse) =>{
 		email : utilisaterRecherche.email
 	}
 
-	const token  =JWT.sign(profilSanMotPass ,"clé secrete");
+	const token  =JWT.sign(profilSanMotPass , process.env.CLE_PRIVEE_JWT);
 	reponse.json({msg :"bienvenu" , token : token}) // authentification =>qui ?
 	                                                // autorisation => qu'est ce que l'on peut faire ?
 	//jsonwebtoken =>//https://jwt.io/

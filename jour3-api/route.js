@@ -1,16 +1,13 @@
 const { Router } = require("express")
 const { Article } = require("./model")
-const{isValidObjectId} =require("mongoose")
-const Joi = require("joi"); // librairie qui permet de réaliser des vérifications super if 
+const {traitement1,traitement2 ,idValid} = require ("./middleware")
 
-const schemaArticleJoi = Joi.object({ // 19 vérifications 
-    titre : Joi.string().min(5).max(255).required(),
-    contenu : Joi.string().min(5).max(10000).required(),
-    like : Joi.number().min(0).required(),
-    auteur : Joi.string().min(5).max(255).required(),
-})
 
 const route = Router();
+// fetch("http://localhost:4003", {method: "GET"})=> récupérer du serveur
+// fetch("http://localhost:4003", {method: "POST"})=> envoyer du serveur
+// fetch("http://localhost:4003", {method: "DELETE"})=> supprimer du serveur
+// fetch("http://localhost:4003", {method: "PUT"})=> mis à jour du serveur
 
 route.get("/", function(request, reponse){
     reponse.json({msg : "fonction"})
@@ -31,33 +28,35 @@ route.post("/" , async function(request, reponse){
     
 
   // récuperer tous les articles
-route.get("/all" , async(request , reponse) =>{
+  // http://localhost:4003/all
+  // 1 middleware
+route.get("/all" , traitement1, async(request , reponse) =>{
     const tousLesArticles = await Article.find()
     reponse.json(tousLesArticles)
 })
    //  DELETE http://localhost:4003/644028afbe8b2be8ad182b30
-route.delete("/:id" , async(request , reponse) => {
+   // ajouter 2 middleware pour le DELETE 
+   // attention l'ord
+route.delete("/:id" , idValid ,async(request , reponse) => {
     const id = request.params.id ;
-     if(!isValidObjectId(id)) return reponse .status(400).json ({msg : `l'id ${id} n'est pas valide pour MongoDB`})
      const reponseMongo = await Article.findByIdAndRemove (id) // DELETE
      if (!reponseMongo) return reponse.status(404).json ({msg :`l'article ${id}n'exise pas`})
    reponse.json({msg :`l'article ${id}est bien supprimé`});
 });
   
-route.get("/:id" , async (request,reponse) =>{
-    const id = request.params.id ;
-    if(!isValidObjectId(id)) return reponse .status(400).json ({msg : `l'id ${id} n'est pas valide pour MongoDB`})
-    //const articleRecherche =await Article.find ({_id :id})
-     const articleRecherche= await Article.findById(id)
-     if (!reponseMongo) return reponse.status(404).json ({msg :`l'article ${id}n'exise pas`})
-      reponse.json(articleRecherche)
+route.get("/:id" , idValid, async (request,reponse) =>{
+  const id = request.params.id ;
+  
+  //const articleRecherche =await Article.find ({_id :id})
+   const articleRecherche= await Article.findById(id)
+   if (!reponseMongo) return reponse.status(404).json ({msg :`l'article ${id}n'exise pas`})
+    reponse.json(articleRecherche)
 })
 
 
   // MEttre a jour http://localhost:4003/6440ea80fba44d4557e5df5e
-  route.put("/:id" ,async (request,reponse) =>{
+  route.put("/:id" , idValid, async (request,reponse) =>{
     const id = request.params.id ;
-    if(!isValidObjectId(id)) return reponse .status(400).json ({msg : `l'id ${id} n'est pas valide pour MongoDB`})
     const {body} = request;
     const {error} =schemaArticleJoi.validate(body ,{abortEarly :false })
     if(error) return reponse.status(400).json(error,details) //400 Bad Request
