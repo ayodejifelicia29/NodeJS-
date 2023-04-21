@@ -1,6 +1,6 @@
 const { Router } = require("express")
 const { Article } = require("./model")
-const {traitement1,traitement2 ,idValid,isValidArticle,autorisation} = require ("./middleware")
+const {traitement1,traitement2 ,idValid,isValidArticle,autorisation,isAdmin} = require ("./middleware")
 
 
 const route = Router();
@@ -30,10 +30,11 @@ route.get("/all" , async(request , reponse) =>{
     reponse.json(tousLesArticles)
 })
 
+
    //  DELETE http://localhost:4003/644028afbe8b2be8ad182b30
    // ajouter 2 middleware pour le DELETE 
    // attention l'ord
-route.delete("/:id" , [autorisation,idValid] ,async(request , reponse) => {
+route.delete("/:id" , [autorisation,isAdmin,idValid] ,async(request , reponse) => {
     const id = request.params.id ;
      const reponseMongo = await Article.findByIdAndRemove (id) // DELETE
      if (!reponseMongo) return reponse.status(404).json ({msg :`l'article ${id}n'exise pas`})
