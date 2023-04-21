@@ -44,6 +44,7 @@ function autorisation(request,reponse,next) {
 	//si elle est presente mais qui a un problème => problème dans la signature (3ème partie)
 	try{
 		const verif =  JWT.verify(token ,process.env.CLE_PRIVEE-JWT)
+		console.log(verif);
 		//si tout ok => passer à la suite
 		next();   
 	}

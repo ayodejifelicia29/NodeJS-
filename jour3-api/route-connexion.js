@@ -37,7 +37,8 @@ route.post("/login" , async(request,reponse) =>{
 
     const profilSanMotPass ={
 		_id :utilisaterRecherche._id,
-		email : utilisaterRecherche.email
+		email : utilisaterRecherche.email,
+		role :utilisaterRecherche.role ? utilisaterRecherche.role : " redacteur"
 	}
 
 	const token  =JWT.sign(profilSanMotPass , process.env.CLE_PRIVEE_JWT);

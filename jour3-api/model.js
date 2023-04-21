@@ -13,7 +13,8 @@ const Article = model("articles", articleSchema) ;
 // les champs des Documents dans la collection
 const userSchema = new Schema({
     email :  String ,
-    password : String 
+    password : String,
+    role :  {type : String ,enum : ['redacteur' ,'admin']}
 });
 
 // creation du model => class qui va nous permettre .find() .findBIdAndUpdate()
