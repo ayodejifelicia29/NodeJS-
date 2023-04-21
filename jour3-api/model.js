@@ -1,10 +1,11 @@
-const { Schema , model } = require("mongoose")
+const { Schema , model, Types } = require("mongoose")
 
 const articleSchema = new Schema({
     titre : String ,
     contenu : String ,
     like : Number ,
-    auteur : String
+    //auteur : String // changer le type
+    auteur :{type: Types.ObjectId , ref :"user"}
 });
 
 const Article = model("articles", articleSchema) ;
