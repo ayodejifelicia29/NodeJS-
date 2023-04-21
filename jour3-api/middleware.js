@@ -2,6 +2,7 @@
 
 const { isValidObjectId } = require("mongoose");
 const {schemaArticleJoi} =require ("./verif")
+const JWT =require("jsonwebtoken")
 
 function traitement1(request,reponse,next) {
 	console.log("je réalise le traitement 1");
@@ -34,8 +35,27 @@ function isValidArticle(request,reponse,next) {
     if(error) return  reponse.status(400).json(error.details) // 400 bad Request
      
 }
+function autorisation(request,reponse,next) {
+	// récupérer une information envoyée dans les header de la requete http
+    const token  = request.header("x-token")
+	if(!token) return reponse.status(401).json({msg : " vous devez avoir un token JWT pour réaliser cette opération "})
+	// si elle est absente => erreur 400 // Unathorized
+   
+	//si elle est presente mais qui a un problème => problème dans la signature (3ème partie)
+	try{
+		const verif =  JWT.verify(token ,process.env.CLE_PRIVEE-JWT)
+		//si tout ok => passer à la suite
+		next();   
+	}
+	catch(ex){
+			// 400 => Bad Request
+		reponse.status(400).json({msg : "JWT invalid"})
+       
+	}		
+}
 
 module.exports.traitement1 = traitement1
 module.exports.traitement2 = traitement2
 module.exports.idValid=idValid
 module.exports.isValidArticle = isValidArticle
+module.exports.autorisation = autorisation

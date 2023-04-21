@@ -10,6 +10,7 @@ route.post("/login" , async(request,reponse) =>{
     
 	const {body} = request;
 
+
 	// vérifier que l'on a bien {email: ........ password :......}
 	//stop => c'est pas bon 400
 	const{error}  = schemaJoiUser.validate(body, {abortEarly : false})
@@ -25,6 +26,7 @@ route.post("/login" , async(request,reponse) =>{
 
 	// est ce que le password écrit est valable comparer le mot passe // mot de pass hashé
 	const verif = await compare(body.password , utilisaterRecherche.password)
+	
 	//il n'est pas de faire une comparaison  => laisser à bcrypt.compare () le fait de dire si le mot de passse saisit est équivalent du mot passe hashé
 	//stop => stop 400
 	if(!verif) return reponse.status(404).json({msg : "aucun  profil  trouvé avec cet password"});
